@@ -8,7 +8,10 @@ def similar(a, b):
 
 df = pd.read_excel('VocabStyle.xlsx', index_col=0)
 
-df_ = df.iloc[3638:]
+initial_xlsx_index = 1479
+ending_xlsx_index = 1938
+
+df_ = df.iloc[initial_xlsx_index:ending_xlsx_index]
 
 words = df_.iloc[:, 1]
 
@@ -19,6 +22,7 @@ for i in range(len_words_list):
     for j in range(i + 1, len_words_list):
         similarity = similar(words_list[i], words_list[j])
         if similarity > .7:
-            print(str(similarity), words_list[i], "-", words_list[j], "-", str(i+3640), "-", str(j+3640))
+            print(words_list[i], "-", words_list[j], "-", str(i + initial_xlsx_index + 2), "-",
+                  str(j + initial_xlsx_index + 2))
 
 print('Processed')
